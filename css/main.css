@@ -208,6 +208,25 @@ body {
     box-shadow: var(--shadow10point7);
 }
 
+#about a {
+    display: block;
+    width: 130px;
+    height: 30px;
+    margin: 10px auto 3px auto;
+    color: var(--fontLightColor);
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    line-height: 20px;
+    border: 5px solid var(--dark);
+    background-color: var(--dark);
+    transition: background-color .3s;
+}
+
+#about a:hover {
+    background-color: rgba(0, 0, 0, 0);
+}
+
 /* songs */
 
 #songs {
@@ -219,24 +238,11 @@ body {
     display: block;
     width: 100%;
     max-width: 600px;
-    height: 45vh;
+    height: 60vmax;
+    max-height: 450px;
     margin: 10px auto 20px auto;
     border: 5px solid var(--dark);
     box-shadow: var(--shadow20point7);
-}
-
-/* newsletter */
-#newsletter {
-    margin: 10px auto;
-}
-
-#newsletter .newsletter-area {
-    display: block;
-    margin: 0 auto;
-    max-width: 450px;
-    width: 100%;
-    border: 0;
-    outline: none;
 }
 
 /* gallery images */
@@ -288,9 +294,9 @@ footer a:hover {
     color: var(--fontLightColor);
 }
 
-/* store icon */
+/* up icon */
 
-.storeIcon {
+.upIcon {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -300,12 +306,12 @@ footer a:hover {
     z-index: 20;
 }
 
-.storeIcon img {
+.upIcon img {
     display: block;
     width: 65px;
     transition: opacity .4s;
 }
 
-.storeIcon img:hover {
+.upIcon img:hover {
     opacity: .9;
 }

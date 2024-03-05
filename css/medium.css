@@ -6,6 +6,10 @@
     max-width: 340px;
 }
 
-.storeIcon img {
+#about a {
+    margin: 10px 20% 3px auto;
+}
+
+.upIcon img {
     width: 80px;
 }
