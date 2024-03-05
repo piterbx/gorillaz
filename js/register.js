@@ -1,6 +1,6 @@
 let $userName;
 let $nameInfo;
-let $mail;
+let $email;
 let $emailInfo;
 let $pass;
 let $pass2;
@@ -10,6 +10,7 @@ let $passInfoStatusbar;
 let $passInfoText;
 let $passConfirmInfoText;
 let $confirmRegisterBtn;
+const $error = [];
 
 const register = () => {
     prepareRegisterDOMElements();
@@ -19,7 +20,7 @@ const register = () => {
 const prepareRegisterDOMElements = () => {
     $userName = document.querySelector('#name');
     $nameInfo = document.querySelector('.name-info');
-    $mail = document.querySelector('#email');
+    $email = document.querySelector('#email');
     $emailInfo = document.querySelector('.email-info');
     $pass = document.querySelector('#password');
     $pass2 = document.querySelector('#passwordConfirm');
@@ -29,6 +30,8 @@ const prepareRegisterDOMElements = () => {
     $passInfoText = document.querySelector('.password-checker-info');
     $passConfirmInfoText = document.querySelector('.password-confirm-info');
     $confirmRegisterBtn = document.querySelector('#signUpBtn');
+
+    for(let i=0;i<5;i++) $error.push(true);
 };
 
 const prepareRegisterDOMEvents = () => {
@@ -36,7 +39,7 @@ const prepareRegisterDOMEvents = () => {
     $pass.addEventListener('keyup', checkPassInput);
     $pass2.addEventListener('keyup', checkPass2Input);
     $termsAgree.addEventListener('change', checkCheckbox);
-    $mail.addEventListener('keyup', checkMailInput);   
+    $email.addEventListener('keyup', checkMailInput);   
     $confirmRegisterBtn.addEventListener('click', checkRegister); 
 };
 
@@ -45,22 +48,27 @@ const checkPassword = () => {
         $passInfoStatusbar.style.width = 100+'%';
         $passInfoStatusbar.style.backgroundColor = 'var(--green)';
         $passInfoText.innerHTML = '<span style="background-color:var(--green);">Very strong password</span>';
+        $error[2] = false;
     } else if($pass.value.length >= $minPasswordValue && $pass.value.match($letters) && $pass.value.match($numbers)){
         $passInfoStatusbar.style.width = 66+'%';
         $passInfoStatusbar.style.backgroundColor = 'var(--gold)';
-        $passInfoText.innerHTML = '<span style="background-color:var(--gold);">Good password<br>TIP:</span> Your pass should contain special characters.';
+        $passInfoText.innerHTML = '<span style="background-color:var(--gold);">Good password<br>TIP:</span> Your password should contain special characters.';
+        $error[2] = false;
     } else {
         $passInfoStatusbar.style.width = 33+'%';
         $passInfoStatusbar.style.backgroundColor = 'var(--red)';
-        $passInfoText.innerHTML = `<span>Weak password<br>TIP:</span> Your pass should consist of min.${$minPasswordValue} characters.<br>Your pass should contain numbers & special characters.`;
+        $passInfoText.innerHTML = `<span>Weak password<br>TIP:</span> Your password should consist of min.${$minPasswordValue} characters.<br>Your password should contain numbers & special characters.`;
+        $error[2] = true;
     };
 };
 
 const comparePasswords = () => {
     if($pass.value === $pass2.value || $pass2.value===''){
         $passConfirmInfoText.innerText = '';
+        $error[3] = false;
     } else {
         $passConfirmInfoText.innerHTML = '<span>Passwords are different.</span>';
+        $error[3] = true;
     };
 };
 
@@ -73,17 +81,20 @@ const checkPassInput = () => {
         $passInfoText.innerText = '';
         $passConfirmInfoText.innerText = '';
         $pass2.value = '';
+        $error[2] = true;
     };
 };
 
 const checkPass2Input = () => {
     if($pass.value === ''){
-        $passInfoText.innerHTML = '<span>Type your pass first!</span>';
+        $passInfoText.innerHTML = '<span>Type your password first!</span>';
         $passConfirmInfoText.innerHTML = '';
+        $error[3] = true;
     } else if($pass.value !== '' && $pass2.value !== ''){
         comparePasswords();
     } else {
         $passConfirmInfoText.innerHTML = '';
+        $error[3] = true;
     };
 };
 
@@ -91,50 +102,96 @@ const checkCheckbox = () => {
     $termsAgree.toggleAttribute("checked");
     if($termsAgree.hasAttribute("checked")==false){
         $termsInfo.innerHTML = '<span>*Required</span>';
+        $error[4] = true;
     } else {
         $termsInfo.innerText = '';
+        $error[4] = false;
     };
 };
 
 const checkMailInput = () => {
-    if($mail.value!==''){
+    if($email.value!==''){
         checkEmail();
     } else {
-        $emailInfo.innerText = '';
+        $emailInfo.innerHTML = '<span>*Required</span>';
+        $error[1] = true;
     };
 };
 
 const checkEmail = () => {
-    if($mail.value.match(/^[0-9a-z_.-]+@[0-9a-z.-]+\.[a-z]{2,3}$/i)){
+    if($email.value.match(/^[0-9a-z_.-]+@[0-9a-z.-]+\.[a-z]{2,3}$/i)){
         $emailInfo.innerText = "";
+        $error[1] = false;
     } else {
         $emailInfo.innerHTML = "<span>Please enter a valid email address.</span>";
+        $error[1] = true;
     };
 };
 
 const checkNameAndRewriteFirstLetter = () => {
     if($userName.value.match($letters) && !($userName.value.match($specialCharacters)) && !($userName.value.match($numbers))){
         let modifiedName;
-        if($userName.value.includes(' ')){
+        if($userName.value.includes(' ')){//when user has 2 names or type first and last name
             modifiedName = $userName.value.substring(0,1).toUpperCase()+$userName.value.substring(1,$userName.value.indexOf(' ')+1)+$userName.value.charAt($userName.value.indexOf(' ')+1).toUpperCase()+$userName.value.substring($userName.value.indexOf(' ')+2);
-            console.log(modifiedName);
         } else {
             modifiedName = $userName.value.substring(0,1).toUpperCase()+$userName.value.substring(1);
-            console.log(modifiedName);
         };
         $nameInfo.innerText = `YOUR NAME: ${modifiedName}`;
+        $error[0] = false;
     } else {
-        console.log('fvck u');
+        $nameInfo.innerHTML = '<span>*Required</span>';
+        $error[0] = true;
     }
 };
 
-const checkRegister = () => {
-    TODO: 'check everything'
-    if($error===false){
-        $logged = true;
+const checkIfFormOK = () => {
+    for(let i=0;i<$error.length;i++){
+        if($error[i]){
+            return false;
+        }
     }
-    console.log(`Logged: ${$logged}`);
+    return true;
+}
+
+const checkRegister = () => {
+    let everythingOK = false;
+    checkNameAndRewriteFirstLetter();
+    checkMailInput();
+    checkPassInput();
+    checkPass2Input();
+    if($termsAgree.hasAttribute("checked")){
+        $error[4] = false;
+    } else {
+        $termsInfo.innerHTML = '<span>*Required</span>';
+        $error[4] = true;
+    }
+    checkMailInput();
+
+    everythingOK = checkIfFormOK();
+
+    if(everythingOK) clearRegisterForm();
+    // clearRegisterForm();
+
+    console.log(`If everything ok: ${everythingOK}`);
     console.log(`Error: ${$error}`);
 };
+
+const clearRegisterForm = () => {
+    everythingOK = false;
+
+    $userName.value = '';
+    $nameInfo.innerText = '';
+
+    $email.value = '';
+    $emailInfo.innerText = '';
+
+    $pass.value = '';
+
+    $passInfoStatusbar.removeAttribute('style');
+    $passInfoText.innerText = '';
+    $passConfirmInfoText.innerText = '';
+
+    $pass2.value = '';
+}
 
 document.addEventListener('DOMContentLoaded', register);
