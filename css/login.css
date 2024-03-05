@@ -64,6 +64,12 @@
     line-height: 38px;
 }
 
+#loginForm .wrapper #loginBtn {
+    background-color: rgba(255, 255, 255, 0.3);
+    text-shadow: var(--shadow20point7);
+    box-shadow: var(--shadowInset10point4);
+}
+
 #loginForm .signuplink:hover {
     background-color: #cccccc28;
 }
