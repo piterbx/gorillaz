@@ -53,6 +53,9 @@
 #signUpForm .wrapper #signUpBtn {
     text-transform: uppercase;
     cursor: pointer;
+    background-color: #2c8fc8c4;
+    text-shadow: var(--shadow10point5);
+    box-shadow: var(--shadowInset10point4);
 }
 
 #signUpForm .wrapper #signUpBtn:hover {

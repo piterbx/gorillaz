@@ -65,7 +65,7 @@
 }
 
 #loginForm .wrapper #loginBtn {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--pink);
     text-shadow: var(--shadow20point7);
     box-shadow: var(--shadowInset10point4);
 }
