@@ -19,7 +19,7 @@
     height: 100%;
 }
 
-#loginForm .wrapper input[type='text'],
+#loginForm .wrapper input[type='email'],
 #loginForm .wrapper input[type='password'],
 #loginForm .wrapper #loginBtn,
 #loginForm .signuplink {

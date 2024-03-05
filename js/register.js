@@ -119,7 +119,7 @@ const checkMailInput = () => {
 };
 
 const checkEmail = () => {
-    if($email.value.match(/^[0-9a-z_.-]+@[0-9a-z.-]+\.[a-z]{2,3}$/i)){
+    if($email.value.match($emailRegexp)){
         $emailInfo.innerText = "";
         $error[1] = false;
     } else {

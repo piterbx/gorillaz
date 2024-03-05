@@ -1,4 +1,4 @@
-let $loginInput;
+let $emailInput;
 let $passwordInput;
 let logInBtn;
 let $loginAlertInfo;
@@ -10,34 +10,26 @@ const login = () => {
 };
 
 const prepareLoginDOMElements = () => {
-    $loginInput = document.querySelector('#login');
+    $emailInput = document.querySelector('#email');
     $passwordInput = document.querySelector('#password');
     $logInBtn = document.querySelector('#loginBtn');
     $loginAlertInfo = document.querySelector('.login-alert');
     $passAlertInfo = document.querySelector('.pass-alert');
 };
 const prepareLoginDOMEvents = () => {
-    $loginInput.addEventListener('keyup', checkLogin);
+    $emailInput.addEventListener('keyup', checkLogin);
     $passwordInput.addEventListener('keyup', checkPass);
     $logInBtn.addEventListener('click', checkLoginForm);
 };
 
 const checkLogin = () => {
-    if($loginInput.value!==''){
-        if($loginInput.value.length<$minLoginValue){
-            $loginAlertInfo.innerText = 'Your login is too short :/';
-            return true;
-        } else if($loginInput.value.length>=$minLoginValue && $loginInput.value.match($letters) && $loginInput.value.match($numbers)){
-            $loginAlertInfo.innerText = '';
-            return false;
-        } else {
-            $loginAlertInfo.innerText = 'Wrong login format';
-            return true;
-        };
+    if(!$emailInput.value.match($emailRegexp)){
+        $loginAlertInfo.innerHTML = "<span>Please enter a valid email address.</span>";
+        return false;
     } else {
-        $loginAlertInfo.innerText = 'Type your login!';
+        $loginAlertInfo.innerText = '';
         return true;
-    };
+    }
 };
 
 const checkPass = () => {
@@ -61,8 +53,8 @@ const checkLoginForm = () => {
         $loginAlertInfo.innerText = '';
         $passAlertInfo.innerText = '';
     } else {
-        $loginAlertInfo.innerHTML = '<span style="color:var(--red)">!</span>';
-        $passAlertInfo.innerHTML = '<span style="color:var(--red)">! Wrong login or pass );</span>';
+        $loginAlertInfo.innerHTML = '<span style="color:var(--fontLightColor);background-color:var(--red)">Please enter a valid email address.</span>';
+        $passAlertInfo.innerHTML = '<span style="color:var(--fontLightColor);background-color:var(--red)">! Wrong login or pass );</span>';
     };
 };
 
