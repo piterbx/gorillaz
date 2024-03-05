@@ -1,0 +1,69 @@
+#loginForm {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    height: 80vh;
+    background-image: url('../images/homepage/2.jpg');
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+}
+
+#loginForm .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 95%;
+    height: 100%;
+}
+
+#loginForm .wrapper input[type='text'],
+#loginForm .wrapper input[type='password'],
+#loginForm .wrapper #loginBtn,
+#loginForm .signuplink {
+    display: block;
+    width: 100%;
+    max-width: 370px;
+    height: 60px;
+    padding: 7px 10px;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, .6);
+    color: var(--fontLightColor);
+    border: 3px solid var(--fontLightColor);
+    font-family: 'Gorditas', cursive;
+    font-size: 1.2rem;
+    transition: background-color .3s;
+}
+
+#loginForm .wrapper #loginBtn {
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#loginForm .wrapper #loginBtn:hover {
+    color: var(--fontLightColor);
+    background-color: transparent;
+}
+
+#loginForm .hero-shadow {
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: -1;
+}
+
+#loginForm .signuplink {
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    line-height: 38px;
+}
+
+#loginForm .signuplink:hover {
+    background-color: #cccccc28;
+}

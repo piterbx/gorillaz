@@ -1,0 +1,11 @@
+#about .wrapper {
+    flex-direction: row;
+}
+
+#about p {
+    max-width: 340px;
+}
+
+.storeIcon img {
+    width: 80px;
+}

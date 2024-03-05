@@ -1,0 +1,136 @@
+#signUpForm {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: var(--green);
+    z-index: 0;
+}
+
+#signUpForm .different-color {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 340px;
+    background-color: var(--red);
+    border-bottom: 5px solid var(--dark);
+    transform: translate(-50%);
+    z-index: -1;
+}
+
+#signUpForm .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    width: 95%;
+    height: 100%;
+    margin: 20px auto 40px auto;
+}
+
+#signUpForm .wrapper input[type='text'],
+#signUpForm .wrapper input[type='password'],
+#signUpForm .wrapper input[type='email'],
+#signUpForm .wrapper #signUpBtn,
+#signUpForm .loginlink {
+    display: block;
+    width: 100%;
+    max-width: 370px;
+    height: 60px;
+    padding: 7px 10px;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, .6);
+    color: var(--fontLightColor);
+    border: 3px solid var(--fontLightColor);
+    font-family: 'Gorditas', cursive;
+    font-size: 1.2rem;
+    transition: background-color .3s;
+}
+
+#signUpForm .wrapper #signUpBtn {
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#signUpForm .wrapper #signUpBtn:hover {
+    color: var(--fontLightColor);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#signUpForm .loginlink {
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    line-height: 38px;
+}
+
+#signUpForm .loginlink:hover {
+    background-color: #cccccc28;
+}
+
+/* password checker */
+
+#signUpForm .password-checker-bar {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    height: 10px;
+    background-color: var(--fontLightColor);
+    border: 2px solid var(--dark);
+    transform: translateY(-7px);
+}
+
+#signUpForm .password-checker-bar-status {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 100%;
+    transition: width .2s;
+    background-color: red;
+}
+
+#signUpForm .text-info {
+    text-align: center;
+    line-height: 25px;
+    letter-spacing: 1px;
+    transform: translateY(-5px);
+}
+
+#signUpForm .text-info span {
+    font-size: 1.2rem;
+    background-color: var(--red);
+    text-shadow: var(--shadowInset10point4);
+}
+
+/* termsCheckbox */
+
+#signUpForm .terms {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 0 7px;
+    appearance: none;
+    background-color: var(--fontLightColor);
+    border: 2px solid var(--dark);
+    transform: translateY(2px);
+    cursor: pointer;
+}
+
+#signUpForm .terms:checked {
+    border: 5px solid var(--dark);
+}
+
+#signUpForm .termsText {
+    display: inline;
+}
+
+#signUpForm .termsLink {
+    color: var(--fontLightColor);
+}
+
+#signUpForm .terms-info {
+    padding-top: 15px;
+}
