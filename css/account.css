@@ -1,0 +1,186 @@
+#editAccount {
+    background-color: var(--green);
+    padding-top: 20px;
+}
+
+#account-content-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#account-content-form h3,
+#danger-zone h3,
+#danger-zone h4 {
+    display: block;
+    margin: 10px auto 0 auto;
+    text-align: center;
+}
+
+.form-btn {
+    border: none;
+    font-size: 18px;
+    font-family: inherit;
+    width: 90%;
+    height: 40px;
+    cursor: pointer;
+    background-color: var(--dark);
+    color: var(--fontLightColor);
+    box-shadow: var(--shadow10point5);
+}
+
+.form-btn:hover {
+    box-shadow: var(--shadow20point7);
+}
+
+/* profile-img */
+
+.account-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    gap: 10px;
+}
+
+.account-img-box .control-btn {
+    border: none;
+    font-size: 20px;
+    font-family: inherit;
+    width: 35px;
+    height: 40px;
+    cursor: pointer;
+    background-color: var(--dark);
+    color: var(--fontLightColor);
+    box-shadow: var(--shadow10point5);
+}
+
+.account-img-box .control-btn:hover {
+    box-shadow: var(--shadow20point7);
+}
+
+#account-img input[type=radio] {
+    appearance: none;
+}
+
+#account-img img {
+    border: 5px solid var(--dark);
+    box-shadow: var(--shadow10point5);
+    width: 100%;
+}
+
+/* account data */
+.account-data-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#account-data {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px 0;
+}
+
+#account-data input,
+#danger-zone input[type=password] {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    font-family: inherit;
+    color: var(--fontLightColor);
+    background-color: var(--dark);
+    border: 2px solid var(--dark);
+    padding: 5px 10px;
+    box-shadow: var(--shadow10point5);
+}
+
+#account-data input:disabled {
+    cursor: not-allowed;
+}
+
+input[type=checkbox] {
+    appearance: none;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 7px;
+    border: 2px solid var(--dark);
+    background-color: var(--fontLightColor);
+}
+
+input[type=checkbox]:checked {
+    border-width: 5px;
+}
+
+.albums {
+    padding-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#submitChanges {
+    margin: 1.2rem auto 4px auto;
+}
+
+/* danger zone */
+#danger-zone div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#danger-zone h3 {
+    margin-top: 3.2rem;
+    width: 80%;
+    background-color: var(--red);
+    padding: 7px 0;
+    margin-bottom: 8px;
+}
+
+#danger-zone h4 {
+    font-size: 1.1rem;
+}
+
+#danger-zone label {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px 0 5px;
+}
+
+#danger-zone input {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 5px auto 10px auto;
+    box-shadow: var(--shadow20point7);
+}
+
+#danger-zone input[type=button] {
+    box-shadow: var(--shadow10point5);
+    display: block;
+    width: 90%;
+    margin: 1rem auto;
+}
+
+#danger-zone input[type=button]:hover {
+    box-shadow: var(--shadow20point7);
+}
+
+.delete-account-item {
+    display: flex;
+    flex-direction: column !important;
+}
+
+.delete-account {
+    min-width: 200px;
+}

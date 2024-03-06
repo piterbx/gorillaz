@@ -13,3 +13,13 @@
 .upIcon img {
     width: 80px;
 }
+
+#account-content-form {
+    flex-direction: row;
+    align-items: start;
+}
+
+#danger-zone div {
+    flex-direction: row;
+    align-items: start;
+}
