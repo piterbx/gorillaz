@@ -172,7 +172,7 @@ const checkRegister = () => {
 
     if (everythingOK) {
         createdUser = new User(userName.value, email.value, pass.value);
-        sessionStorage.setItem(email.value, createdUser.save());
+        localStorage.setItem(email.value, createdUser.save());
 
         clearRegisterForm();
     }

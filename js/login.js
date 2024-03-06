@@ -22,44 +22,55 @@ const prepareLoginDOMEvents = () => {
     $logInBtn.addEventListener('click', checkLoginForm);
 };
 
-const checkLogin = () => {
+const checkLogin = () => { //return if there is an error (false = ok)
     if (!emailInput.value.match($emailRegexp)) {
         loginAlertInfo.innerHTML = "<span>Please enter a valid email address.</span>";
-        return false;
+        return true;
     } else {
         loginAlertInfo.innerText = '';
-        return true;
+        return false;
     }
 };
 
 const checkPass = () => {
     if (passwordInput.value === '') {
-        passAlertInfo.innerText = 'Type your pass!';
+        passAlertInfo.innerText = 'Type your password!';
         return true;
-    } else if (passwordInput.value !== '' && passwordInput.value.length >= $minPasswordValue && passwordInput.value.match($letters) && passwordInput.value.match($numbers) && passwordInput.value.match($specialCharacters)) {
+    } else {
         passAlertInfo.innerText = '';
         return false;
-    } else {
-        passAlertInfo.innerText = 'Wrong pass format';
-        return true;
     };
 };
 
 const checkLoginForm = () => {
+    console.log(checkLogin(), checkPass());
     if (checkLogin() === false && checkPass() === false) {
-        console.log('OMG! You\'re logged.');
-        $logged = true;
-        displayProfileInfo();
-        loginAlertInfo.innerText = '';
-        passAlertInfo.innerText = '';
+        let user = findUser();
+        console.log(user);
+        if (user !== null) {
+            sessionStorage.setItem('loggedIn', 'true');
+            sessionStorage.setItem('loggedUser', user.email);
+        }
     } else {
-        loginAlertInfo.innerHTML = '<span style="color:var(--fontLightColor);background-color:var(--red)">Please enter a valid email address.</span>';
-        passAlertInfo.innerHTML = '<span style="color:var(--fontLightColor);background-color:var(--red)">! Wrong login or pass );</span>';
+        loginAlertInfo.innerText = '';
+        passAlertInfo.innerHTML = '<span style="color:var(--fontLightColor);background-color:var(--red)">Wrong login or password.</span>';
     };
 };
 
-const displayProfileInfo = () => {
-    alert(`Login: ${$loginInput.value}, Pass: ${passwordInput.value}`)
-};
+const findUser = () => {
+    let foundUser = JSON.parse(localStorage.getItem(emailInput.value));
+    console.log("Password for this user", foundUser);
+    if (foundUser === null) {
+        loginAlertInfo.innerHTML = '<span style="color:var(--fontLightColor);background-color:var(--red)">User not found.</span>';
+        return null;
+    } else {
+        if (foundUser.password !== passwordInput.value) {
+            passAlertInfo.innerHTML = '<span style="color:var(--fontLightColor);background-color:var(--red)">Wrong login or password.</span>';
+            return null;
+        }
+    }
+    return foundUser;
+}
+
 
 document.addEventListener('DOMContentLoaded', login);
