@@ -5,6 +5,7 @@ let loginAlertInfo;
 let passAlertInfo;
 
 const login = () => {
+    if ($logged === 'true') window.location = '/account.html';
     prepareLoginDOMElements();
     prepareLoginDOMEvents();
 };

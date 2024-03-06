@@ -14,6 +14,7 @@ let createdUser;
 const error = [];
 
 const register = () => {
+    if ($logged === 'true') window.location = '/account.html';
     prepareRegisterDOMElements();
     prepareRegisterDOMEvents();
 };
