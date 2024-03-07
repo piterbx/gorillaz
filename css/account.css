@@ -35,6 +35,11 @@
     box-shadow: var(--shadow20point7);
 }
 
+.btn-clicked {
+    background-color: var(--red);
+    border: 5px solid var(--dark);
+}
+
 /* profile-img */
 
 .account-img-box {

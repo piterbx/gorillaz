@@ -29,6 +29,7 @@ const prepareAccountDOMElements = () => {
 const prepareAccountDOMEvents = () => {
     logBtn.addEventListener('click', logout);
     submitChangesBtn.addEventListener('click', submitChanges);
+    submitChangesBtn.addEventListener('mouseout', e => restoreStylesForBtn(e, 'Submit changes'));
 }
 
 const logout = () => {
@@ -42,7 +43,7 @@ const loadUserData = () => {
     if ($loggedUser !== null) {
         userData = JSON.parse(localStorage.getItem($loggedUser));
 
-        changeProfileImg(userData.img);
+        changeProfileImg(userData.img * 1);
 
         emailInput.value = userData.email;
         nameInput.value = userData.name;
@@ -82,49 +83,73 @@ const checkName = () => {
     }
 }
 
-const submitChanges = () => {
-    if (userData) {
-        const profileImg = document.querySelector('#profile-img');
-        userData.img = profileImg.value;
+const submitChanges = e => {
+    if (dbClicked(e, 'Are you sure?')) {
+        console.log('yes');
 
-        let modifiedName;
-        if (nameInput.value.includes(' ')) {
-            modifiedName = userName.value.substring(0, 1).toUpperCase() + userName.value.substring(1, userName.value.indexOf(' ') + 1) + userName.value.charAt(userName.value.indexOf(' ') + 1).toUpperCase() + userName.value.substring(userName.value.indexOf(' ') + 2);
+        if (userData) {
+            const profileImg = document.querySelector('#profile-img');
+            userData.img = profileImg.value;
+
+            let modifiedName;
+            if (nameInput.value.includes(' ')) {
+                modifiedName = userName.value.substring(0, 1).toUpperCase() + userName.value.substring(1, userName.value.indexOf(' ') + 1) + userName.value.charAt(userName.value.indexOf(' ') + 1).toUpperCase() + userName.value.substring(userName.value.indexOf(' ') + 2);
+            } else {
+                modifiedName = userName.value.substring(0, 1).toUpperCase() + userName.value.substring(1);
+            };
+            userData.name = modifiedName;
+
+            userData.favourites = [];
+            checkBoxes.forEach(el => {
+                if (el.hasAttribute('checked')) {
+                    userData.favourites.push(el.value);
+                }
+            })
+
+            localStorage.setItem($loggedUser, JSON.stringify(userData));
+            loadUserData(); //refresh
         } else {
-            modifiedName = userName.value.substring(0, 1).toUpperCase() + userName.value.substring(1);
-        };
-        userData.name = modifiedName;
+            submitChangesBtn.value = 'Error, Try Again Later';
+            submitChangesBtn.style = 'background-color:var(--red);border:5px solid var(--dark);';
+        }
 
-        userData.favourites = [];
-        checkBoxes.forEach(el => {
-            if (el.hasAttribute('checked')) {
-                userData.favourites.push(el.value);
-            }
-        })
-
-        localStorage.setItem($loggedUser, JSON.stringify(userData));
-        loadUserData(); //refresh
-
-        submitChangesBtn.value = 'Submit changes';
-        submitChangesBtn.style = 'background-color:var(--dark);border:none;';
-    } else {
-        submitChangesBtn.value = 'Error, Try Again Later';
-        submitChangesBtn.style = 'background-color:var(--red);border:5px solid var(--dark);';
+        console.log(userData);
     }
+}
 
-    console.log(userData);
+const dbClicked = (e, txt) => {
+    let doubleClicked = e.target.classList.contains('btn-clicked');
+    console.log("doubleClicked", doubleClicked);
+    if (!doubleClicked) {
+        e.target.classList.add('btn-clicked');
+        e.target.value = txt;
+        return false;
+    }
+    alert('ok');
+    return true;
+}
+
+const restoreStylesForBtn = (e, txt) => {
+    e.target.classList.remove('btn-clicked');
+    e.target.value = txt;
 }
 
 const changeProfileImg = currentEl => {
+    if (currentEl > 3) currentEl = currentEl % 4;
+    if (currentEl < 0) currentEl = 3;
+    let prev = currentEl - 1;
+    let next = currentEl + 1;
+    console.log(prev, currentEl, next);
+
     profileImgDiv.innerHTML = `
-        <input type="button" class="control-btn" value="<" onclick="changeProfileImg(${(currentEl - 1 < 0) ? currentEl + 4 - 1 : currentEl - 1})">
+        <input type="button" class="control-btn" value="<" onclick="changeProfileImg(${prev})">
         <div id="account-img">
             <label class="active">
                 <input type="radio" name="profile-img" id="profile-img" checked value="${currentEl}">
                 <img class="profile-img" src="./images/profile/${currentEl}.webp" alt="Profile img">
            </label>
         </div>
-        <input type="button" class="control-btn" value=">" onclick="changeProfileImg(${(currentEl + 1) % 4})">
+        <input type="button" class="control-btn" value=">" onclick="changeProfileImg(${next})">
     `;
 }
 
