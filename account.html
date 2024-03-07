@@ -29,26 +29,26 @@
                 <div class="profile-img-settings">
                     <h3>Your profile image:</h3>
                     <div class="account-img-box">
-                        <input type="button" class="control-btn" value="<">
+                        <input type="button" class="control-btn" value="<" onclick="changeProfileImg(3)">
                         <div id="account-img">
-                            <label>
-                                <input type="radio" name="profile-img" id="profile-img-0" checked>
+                            <label class="active">
+                                <input type="radio" name="profile-img" checked value="0">
                                 <img class="profile-img" src="./images/profile/0.webp" alt="Profile img">
                             </label>
-                            <label style="display: none;">
-                                <input type="radio" name="profile-img" id="profile-img-1">
+                            <label>
+                                <input type="radio" name="profile-img" value="1">
                                 <img class="profile-img" src="./images/profile/1.webp" alt="Profile img">
                             </label>
-                            <label style="display: none;">
-                                <input type="radio" name="profile-img" id="profile-img-2">
+                            <label>
+                                <input type="radio" name="profile-img" value="2">
                                 <img class="profile-img" src="./images/profile/2.webp" alt="Profile img">
                             </label>
-                            <label style="display: none;">
-                                <input type="radio" name="profile-img" id="profile-img-3">
+                            <label>
+                                <input type="radio" name="profile-img" value="3">
                                 <img class="profile-img" src="./images/profile/3.webp" alt="Profile img">
                             </label>
                         </div>
-                        <input type="button" class="control-btn" value=">">
+                        <input type="button" class="control-btn" value=">" onclick="changeProfileImg(1)">
                     </div>
                 </div>
                 <div class="account-data-settings">

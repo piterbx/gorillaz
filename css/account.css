@@ -71,6 +71,10 @@
     width: 100%;
 }
 
+#account-img label {
+    display: block;
+}
+
 /* account data */
 .account-data-settings {
     display: flex;
@@ -183,4 +187,17 @@ input[type=checkbox]:checked {
 
 .delete-account {
     min-width: 200px;
+}
+
+/* logout */
+
+#logoutBtn {
+    font-size: 1.4rem;
+    font-family: inherit;
+    border: 0;
+    background: none;
+    color: var(--fontLightColor);
+    cursor: pointer;
+    font-weight: bold;
+    padding: 7px 0 0 0;
 }

@@ -51,6 +51,7 @@ const checkLoginForm = () => {
         if (user !== null) {
             sessionStorage.setItem('loggedIn', 'true');
             sessionStorage.setItem('loggedUser', user.email);
+            window.location = '/account.html';
         }
     } else {
         loginAlertInfo.innerText = '';
