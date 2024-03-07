@@ -5,6 +5,9 @@ let userData;
 let emailInput;
 let nameInput;
 let checkBoxes;
+let popup;
+let popupBtn;
+let popupContent;
 
 const accountManagement = () => {
     if ($logged !== 'true') window.location = '/login.html';
@@ -20,6 +23,9 @@ const prepareAccountDOMElements = () => {
     submitChangesBtn = document.querySelector('#submitChanges');
     emailInput = accountDataDiv.querySelector('#email');
     nameInput = accountDataDiv.querySelector('#userName');
+    popup = document.querySelector('.popup');
+    popupBtn = popup.querySelector('.popup-btn');
+    popupContent = popup.querySelector('.popup-content');
 
     const menuBtns = document.querySelectorAll('.navbar ul li');
     logBtn = menuBtns[menuBtns.length - 1];
@@ -30,6 +36,7 @@ const prepareAccountDOMEvents = () => {
     logBtn.addEventListener('click', logout);
     submitChangesBtn.addEventListener('click', submitChanges);
     submitChangesBtn.addEventListener('mouseout', e => restoreStylesForBtn(e, 'Submit changes'));
+    popupBtn.addEventListener('click', closePopup);
 }
 
 const logout = () => {
@@ -125,13 +132,22 @@ const dbClicked = (e, txt) => {
         e.target.value = txt;
         return false;
     }
-    alert('ok');
+    openPopup('Data changed');
     return true;
 }
 
 const restoreStylesForBtn = (e, txt) => {
     e.target.classList.remove('btn-clicked');
     e.target.value = txt;
+}
+
+const openPopup = txt => {
+    popup.classList.add('open');
+    popupContent.innerText = txt;
+}
+
+const closePopup = () => {
+    popup.classList.remove('open');
 }
 
 const changeProfileImg = currentEl => {

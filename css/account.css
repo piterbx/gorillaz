@@ -206,3 +206,33 @@ input[type=checkbox]:checked {
     font-weight: bold;
     padding: 7px 0 0 0;
 }
+
+/* popup */
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: -100;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.open {
+    display: flex;
+    z-index: 100;
+}
+
+.popup h2 {
+    font-size: 2rem;
+}
+
+.popup .popup-btn {
+    max-width: 100px;
+    margin-top: 1.4rem;
+}
