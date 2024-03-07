@@ -25,7 +25,7 @@ const prepareLoginDOMEvents = () => {
 
 const checkLogin = () => { //return if there is an error (false = ok)
     if (!emailInput.value.match($emailRegexp)) {
-        loginAlertInfo.innerHTML = "<span>Please enter a valid email address.</span>";
+        loginAlertInfo.innerHTML = '<span style="color:var(--fontLightColor);background-color:var(--red)">Please enter a valid email address.</span>';
         return true;
     } else {
         loginAlertInfo.innerText = '';

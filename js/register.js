@@ -5,7 +5,7 @@ let emailInfo;
 let pass;
 let pass2;
 let termsAgree;
-let $termsInfo;
+let termsInfo;
 let passInfoStatusbar;
 let passInfoText;
 let passConfirmInfoText;
@@ -27,7 +27,7 @@ const prepareRegisterDOMElements = () => {
     pass = document.querySelector('#password');
     pass2 = document.querySelector('#passwordConfirm');
     termsAgree = document.querySelector('.terms');
-    $termsInfo = document.querySelector('.terms-info');
+    termsInfo = document.querySelector('.terms-info');
     passInfoStatusbar = document.querySelector('.password-checker-bar-status');
     passInfoText = document.querySelector('.password-checker-info');
     passConfirmInfoText = document.querySelector('.password-confirm-info');
@@ -103,10 +103,10 @@ const checkPass2Input = () => {
 const checkCheckbox = () => {
     termsAgree.toggleAttribute("checked");
     if (termsAgree.hasAttribute("checked") == false) {
-        $termsInfo.innerHTML = '<span>*Required</span>';
+        termsInfo.innerHTML = '<span>*Required</span>';
         error[4] = true;
     } else {
-        $termsInfo.innerText = '';
+        termsInfo.innerText = '';
         error[4] = false;
     };
 };
@@ -124,6 +124,10 @@ const checkEmail = () => {
     if (email.value.match($emailRegexp)) {
         emailInfo.innerText = "";
         error[1] = false;
+        if (localStorage.getItem(email.value)) {
+            emailInfo.innerText = "This email is already taken.";
+            error[1] = true;
+        }
     } else {
         emailInfo.innerHTML = "<span>Please enter a valid email address.</span>";
         error[1] = true;
@@ -139,6 +143,7 @@ const checkNameAndRewriteFirstLetter = () => {
             modifiedName = userName.value.substring(0, 1).toUpperCase() + userName.value.substring(1);
         };
         nameInfo.innerText = `YOUR NAME: ${modifiedName}`;
+        userName.value = modifiedName;
         error[0] = false;
     } else {
         nameInfo.innerHTML = '<span>*Required</span>';
@@ -164,7 +169,7 @@ const checkRegister = () => {
     if (termsAgree.hasAttribute("checked")) {
         error[4] = false;
     } else {
-        $termsInfo.innerHTML = '<span>*Required</span>';
+        termsInfo.innerHTML = '<span>*Required</span>';
         error[4] = true;
     }
     checkMailInput();
@@ -176,6 +181,8 @@ const checkRegister = () => {
         localStorage.setItem(email.value, createdUser.save());
 
         clearRegisterForm();
+
+        window.location = '/login.html';
     }
 
     console.log(`If everything ok: ${everythingOK}`);
