@@ -2,7 +2,8 @@
     margin: .6rem auto;
 }
 
-#band h3 {
+#band h3,
+#reallife h3 {
     display: block;
     font-variant: small-caps;
     font-size: 1.6rem;
@@ -75,7 +76,7 @@
     background-position: center;
     background-size: cover;
     z-index: 0;
-    padding: 10px 0;
+    padding: 10px 0 20px 0;
 }
 
 .bandMembersCurrent h3 {
@@ -106,4 +107,34 @@
     background-color: var(--green);
 }
 
+.bandMembersFormer {
+    margin-bottom: 16px;
+}
+
 /* real life band */
+#reallife {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/homepage/3.jpg');
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+    border: 5px solid var(--dark);
+    background-color: var(--green);
+    padding: 1.3rem 0;
+}
+
+#reallife .hero-shadow {
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: -1;
+}
+
+.bandMembersReal .band-member {
+    background-color: var(--orange);
+}
