@@ -47,6 +47,7 @@
 .band-member p {
     text-align: center;
     margin: 10px auto;
+    width: 95%;
     word-wrap: break-word;
 }
 
