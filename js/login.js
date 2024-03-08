@@ -8,6 +8,7 @@ const login = () => {
     if ($logged === 'true') window.location = '/account.html';
     prepareLoginDOMElements();
     prepareLoginDOMEvents();
+    loadUsersFromFile();
 };
 
 const prepareLoginDOMElements = () => {
@@ -74,5 +75,17 @@ const findUser = () => {
     return foundUser;
 }
 
+const loadUsersFromFile = () => {
+    fetch(`http://${window.location.host}/files/users.json`, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json()).then(resData => {
+        console.log(resData.users);
+        resData.users.forEach(user => {
+            localStorage.setItem(user.email, JSON.stringify(user));
+        })
+    }).catch(err => console.error(err));
+}
 
 document.addEventListener('DOMContentLoaded', login);

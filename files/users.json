@@ -1,0 +1,25 @@
+{
+    "users": [
+        {
+            "img": "2",
+            "name": "Tester",
+            "email": "test@test.com",
+            "password": "1234567890qwerty",
+            "favourites": [
+                "Gorillaz",
+                "TheFall",
+                "TheNowNow"
+            ]
+        },
+        {
+            "img": "3",
+            "name": "Al",
+            "email": "test1@test.com",
+            "password": "qwerty12345",
+            "favourites": [
+                "Gorillaz",
+                "PlasticBeach"
+            ]
+        }
+    ]
+}

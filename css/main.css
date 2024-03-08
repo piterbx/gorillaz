@@ -64,6 +64,7 @@ body {
     height: auto;
     padding-bottom: 10px;
     background-color: var(--blue);
+    overflow: hidden;
 }
 
 .navbar .menuLogo {
