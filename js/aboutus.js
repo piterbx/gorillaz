@@ -14,7 +14,14 @@ const loadDataFromJson = () => {
         prepareDOMEl(bandMembersRealBox, resData.realLifePermanentMembers);
         console.log('content loaded');
     }).catch(err => {
-        console.log(err);
+        const tab = [bandMembersCurrentBox, bandMembersFormerBox, bandMembersRealBox];
+        tab.forEach(el => {
+            const alertInfo = document.createElement('p');
+            alertInfo.innerText = 'Failed to load resources. Try again later.';
+            alertInfo.style = 'background-color:var(--red);';
+            el.appendChild(alertInfo);
+        })
+        console.error(err);
     })
 }
 
