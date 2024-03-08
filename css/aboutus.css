@@ -1,0 +1,109 @@
+#band h2 {
+    margin: .6rem auto;
+}
+
+#band h3 {
+    display: block;
+    font-variant: small-caps;
+    font-size: 1.6rem;
+    text-align: center;
+    letter-spacing: 1.2px;
+    text-shadow: var(--shadow10point5);
+    padding: 1rem 0;
+}
+
+/* bandMembers general */
+
+.bandMembers .band-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.band-member {
+    background-color: rgba(0, 0, 0, .6);
+    background-color: var(--pink);
+    border: 5px solid var(--dark);
+    width: 100%;
+    max-width: 230px;
+    margin: .4rem auto;
+    text-shadow: var(--shadow10point7);
+}
+
+.band-member h4 {
+    font-size: 1.3rem;
+    padding: 1rem 0 .6rem 0;
+    text-align: center;
+}
+
+.band-member img {
+    display: block;
+    margin: 0 auto;
+    border: 5px solid var(--dark);
+}
+
+.band-member p {
+    text-align: center;
+    margin: 10px auto;
+    word-wrap: break-word;
+}
+
+.band-member a {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    color: inherit;
+    width: 60px;
+    margin-bottom: 7px;
+    text-decoration: none;
+    border: 5px solid var(--dark);
+    transition: .3s background-color;
+}
+
+.band-member a:hover {
+    background-color: rgba(0, 0, 0, .8);
+}
+
+/* virtual band current */
+
+.bandMembersCurrent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/homepage/2.jpg');
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+    padding: 10px 0;
+}
+
+.bandMembersCurrent h3 {
+    margin-bottom: 10px;
+}
+
+.bandMembersCurrent .hero-shadow {
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: -1;
+}
+
+.bandMembersCurrent .band-member {
+    background-color: var(--pink);
+}
+
+/* virtual band former */
+
+.bandMembersFormer h3 {
+    margin: 10px auto;
+}
+
+.bandMembersFormer .band-member {
+    background-color: var(--green);
+}
+
+/* real life band */

@@ -19,3 +19,15 @@
     flex-direction: row;
     align-items: start;
 }
+
+.bandMembers .band-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.bandMembers .band-member {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 350px;
+}
