@@ -186,7 +186,6 @@ const checkRegister = () => {
     }
 
     console.log(`If everything ok: ${everythingOK}`);
-    console.log(`Error: ${error}`);
 };
 
 const clearRegisterForm = () => {

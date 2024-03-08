@@ -48,7 +48,6 @@ const checkLoginForm = () => {
     console.log(checkLogin(), checkPass());
     if (checkLogin() === false && checkPass() === false) {
         let user = findUser();
-        console.log(user);
         if (user !== null) {
             sessionStorage.setItem('loggedIn', 'true');
             sessionStorage.setItem('loggedUser', user.email);
@@ -62,7 +61,6 @@ const checkLoginForm = () => {
 
 const findUser = () => {
     let foundUser = JSON.parse(localStorage.getItem(emailInput.value));
-    console.log("Password for this user", foundUser);
     if (foundUser === null) {
         loginAlertInfo.innerHTML = '<span style="color:var(--fontLightColor);background-color:var(--red)">User not found.</span>';
         return null;
@@ -81,7 +79,6 @@ const loadUsersFromFile = () => {
             'Content-Type': 'application/json'
         }
     }).then(res => res.json()).then(resData => {
-        console.log(resData.users);
         resData.users.forEach(user => {
             localStorage.setItem(user.email, JSON.stringify(user));
         })

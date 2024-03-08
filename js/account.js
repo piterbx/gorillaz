@@ -79,7 +79,6 @@ const loadUserData = () => {
         emailInput.value = userData.email;
         nameInput.value = userData.name;
 
-        console.log(userData.favourites);
         const tab = userData.favourites;
 
         favouritesBox.innerHTML = `
@@ -116,7 +115,6 @@ const checkName = () => {
 
 const submitChanges = e => {
     if (dbClicked(e, 'Are you sure?', 'Data changed')) {
-        console.log('yes');
 
         if (userData) {
             const profileImg = document.querySelector('#profile-img');
@@ -150,7 +148,6 @@ const submitChanges = e => {
 
 const dbClicked = (e, txt, popupTxt) => {
     let doubleClicked = e.target.classList.contains('btn-clicked');
-    console.log("doubleClicked", doubleClicked);
     if (!doubleClicked) {
         e.target.classList.add('btn-clicked');
         e.target.value = txt;
@@ -179,7 +176,6 @@ const changeProfileImg = currentEl => {
     if (currentEl < 0) currentEl = 3;
     let prev = currentEl - 1;
     let next = currentEl + 1;
-    console.log(prev, currentEl, next);
 
     profileImgDiv.innerHTML = `
         <input type="button" class="control-btn" value="<" onclick="changeProfileImg(${prev})">
