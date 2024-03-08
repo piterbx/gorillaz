@@ -1,0 +1,74 @@
+{
+    "virtualCurrentBandMembers": {
+        "2-D": {
+            "title": "Stuart '2-D' Pot",
+            "occupation": "vocals/keyboard/melodica/synthesizer/piano",
+            "link": "https://gorillaz.fandom.com/wiki/2-D",
+            "img": "./images/profile/0.webp"
+        },
+        "Murdoc": {
+            "title": "Murdoc 'Faust' Niccals",
+            "occupation": "bass/drum programming",
+            "link": "https://gorillaz.fandom.com/wiki/Murdoc",
+            "img": "./images/profile/1.webp"
+        },
+        "Russel": {
+            "title": "Russel Hobbs",
+            "occupation": "drums/percussion",
+            "link": "https://gorillaz.fandom.com/wiki/Russel",
+            "img": "./images/profile/2.webp"
+        },
+        "Noodle": {
+            "title": "Noodle",
+            "occupation": "guitar/backing vocals/melodica/keyboard/synthesizer",
+            "link": "https://gorillaz.fandom.com/wiki/Noodle",
+            "img": "./images/profile/3.webp"
+        }
+    },
+    "virtualFormerBandMembers": {
+        "Paula_Cracker": {
+            "title": "Paula Cracker",
+            "occupation": "guitar",
+            "link": "https://gorillaz.fandom.com/wiki/Paula_Cracker",
+            "img": "./images/profile/Paula_Cracker_profile.webp"
+        },
+        "Del": {
+            "title": "Del Tha Ghost Rapper",
+            "occupation": "vocals",
+            "link": "https://gorillaz.fandom.com/wiki/Del",
+            "img": "./images/profile/Del_profile.webp"
+        },
+        "Cyborg_Noodle": {
+            "title": "Cyborg Noodle",
+            "occupation": "guitar/keyboard/backing vocals",
+            "link": "",
+            "img": "./images/profile/Cyborg_Noodle_profile.webp"
+        },
+        "Ace": {
+            "title": "Ace D. Copular",
+            "occupation": "bass",
+            "link": "https://gorillaz.fandom.com/wiki/Ace",
+            "img": "./images/profile/Ace_profile.webp"
+        }
+    },
+    "realLifePermanentMembers": {
+        "Damon_Albarn": {
+            "title": "Damon Albarn",
+            "occupation": "vocals/keyboard/guitar/melodica/synthesizer/piano/production",
+            "link": "https://gorillaz.fandom.com/wiki/Damon_Albarn",
+            "img": "./images/profile/Damon_Albarn.webp"
+        },
+        "Jamie_Hewlett": {
+            "title": "Jamie Hewlett",
+            "occupation": "illustration/animation/writing/direction",
+            "link": "https://gorillaz.fandom.com/wiki/Jamie_Hewlett",
+            "img": "./images/profile/Jamie_Hewlett.webp"
+        },
+        "Remi_Kabaka_Jr.": {
+            "title": "Remi Kabaka Jr.",
+            "occupation": "drums/percussion/voice acting/production/sound system",
+            "link": "https://gorillaz.fandom.com/wiki/Remi_Kabaka_Jr.",
+            "img": "./images/profile/Remi_Kabaka_Jr.webp"
+        }
+    }
+}
