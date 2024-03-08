@@ -9,6 +9,12 @@ let popup;
 let popupBtn;
 let popupContent;
 
+let currentPassInput;
+let newPassInput;
+let newPass2Input;
+let submitPassChange;
+let passInfoAlert;
+
 const accountManagement = () => {
     if ($logged !== 'true') window.location = '/login.html';
     prepareAccountDOMElements();
@@ -30,13 +36,23 @@ const prepareAccountDOMElements = () => {
     const menuBtns = document.querySelectorAll('.navbar ul li');
     logBtn = menuBtns[menuBtns.length - 1];
     logBtn.innerHTML = `<button id="logoutBtn">Log out</button>`;
+
+    currentPassInput = document.querySelector('#currentPassword');
+    newPassInput = document.querySelector('#newPassword');
+    newPass2Input = document.querySelector('#repeatNewPassword');
+    submitPassChange = document.querySelector('#submitPassChange');
+    passInfoAlert = document.querySelector('.alert');
 }
 
 const prepareAccountDOMEvents = () => {
     logBtn.addEventListener('click', logout);
     submitChangesBtn.addEventListener('click', submitChanges);
     submitChangesBtn.addEventListener('mouseout', e => restoreStylesForBtn(e, 'Submit changes'));
+    submitPassChange.addEventListener('mouseout', e => restoreStylesForBtn(e, 'Change'));
     popupBtn.addEventListener('click', closePopup);
+    submitPassChange.addEventListener('click', submitPasswordChange);
+    newPassInput.addEventListener('keyup', checkPasswordAndCompare);
+    newPass2Input.addEventListener('keyup', checkPasswordAndCompare);
 }
 
 const logout = () => {
@@ -167,6 +183,48 @@ const changeProfileImg = currentEl => {
         </div>
         <input type="button" class="control-btn" value=">" onclick="changeProfileImg(${next})">
     `;
+}
+
+const submitPasswordChange = e => {
+    if (userData) {
+        if (userData.password === currentPassInput.value && checkPasswordAndCompare()) {
+            if (dbClicked(e, 'Are you sure?')) {
+                userData.password = newPassInput.value;
+                localStorage.setItem($loggedUser, JSON.stringify(userData));
+                clearInputs();
+            }
+        } else {
+            passInfoAlert.style = 'display:block';
+            passInfoAlert.innerHTML = '<span style="backgroung-color:var(--red);">Wrong current password</span>';
+            currentPassInput.value = '';
+            newPassInput.value = '';
+            newPass2Input.value = '';
+            currentPassInput.focus();
+        }
+    }
+}
+
+const checkPasswordAndCompare = () => { //if everything okey? ans:
+    passInfoAlert.style = 'display:block';
+    if (newPassInput.value.length >= $minPasswordValue && newPassInput.value.match($letters) && newPassInput.value.match($numbers) && newPassInput.value.match($specialCharacters)) {
+        passInfoAlert.innerHTML = '<span style="background-color:var(--green)">Very strong password</span>';
+        if (newPassInput.value === newPass2Input.value) return true;
+        else passInfoAlert.innerHTML += '<span style="background-color:var(--red)">Passwords are not the same.</span>';
+    } else if (newPassInput.value.length >= $minPasswordValue && newPassInput.value.match($letters) && newPassInput.value.match($numbers)) {
+        passInfoAlert.innerHTML = '<span style="background-color:var(--gold)">Good password TIP: Your password should contain special characters.</span>';
+        if (newPassInput.value === newPass2Input.value) return true;
+        else passInfoAlert.innerHTML += '<span style="background-color:var(--red)">Passwords are not the same.</span>';
+    } else {
+        passInfoAlert.innerHTML = `<span style="background-color:var(--red)">Weak password TIP: Your password should consist of min.${$minPasswordValue} characters.Your password should contain numbers & special characters.</span>`;
+    };
+    return false;
+};
+
+const clearInputs = () => {
+    passInfoAlert.innerText = '';
+    currentPassInput.value = '';
+    newPassInput.value = '';
+    newPass2Input.value = '';
 }
 
 document.addEventListener('DOMContentLoaded', accountManagement);
