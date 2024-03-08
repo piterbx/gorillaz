@@ -15,6 +15,8 @@ let newPass2Input;
 let submitPassChange;
 let passInfoAlert;
 
+let deleteAccount;
+
 const accountManagement = () => {
     if ($logged !== 'true') window.location = '/login.html';
     prepareAccountDOMElements();
@@ -42,6 +44,8 @@ const prepareAccountDOMElements = () => {
     newPass2Input = document.querySelector('#repeatNewPassword');
     submitPassChange = document.querySelector('#submitPassChange');
     passInfoAlert = document.querySelector('.alert');
+
+    deleteAccount = document.querySelector('.delete-account');
 }
 
 const prepareAccountDOMEvents = () => {
@@ -50,9 +54,13 @@ const prepareAccountDOMEvents = () => {
     submitChangesBtn.addEventListener('mouseout', e => restoreStylesForBtn(e, 'Submit changes'));
     submitPassChange.addEventListener('mouseout', e => restoreStylesForBtn(e, 'Change'));
     popupBtn.addEventListener('click', closePopup);
+
     submitPassChange.addEventListener('click', submitPasswordChange);
     newPassInput.addEventListener('keyup', checkPasswordAndCompare);
     newPass2Input.addEventListener('keyup', checkPasswordAndCompare);
+
+    deleteAccount.addEventListener('click', deleteUser);
+    submitPassChange.addEventListener('mouseout', e => restoreStylesForBtn(e, 'Delete'));
 }
 
 const logout = () => {
@@ -107,7 +115,7 @@ const checkName = () => {
 }
 
 const submitChanges = e => {
-    if (dbClicked(e, 'Are you sure?')) {
+    if (dbClicked(e, 'Are you sure?', 'Data changed')) {
         console.log('yes');
 
         if (userData) {
@@ -140,7 +148,7 @@ const submitChanges = e => {
     }
 }
 
-const dbClicked = (e, txt) => {
+const dbClicked = (e, txt, popupTxt) => {
     let doubleClicked = e.target.classList.contains('btn-clicked');
     console.log("doubleClicked", doubleClicked);
     if (!doubleClicked) {
@@ -148,7 +156,7 @@ const dbClicked = (e, txt) => {
         e.target.value = txt;
         return false;
     }
-    openPopup('Data changed');
+    openPopup(popupTxt);
     return true;
 }
 
@@ -188,7 +196,7 @@ const changeProfileImg = currentEl => {
 const submitPasswordChange = e => {
     if (userData) {
         if (userData.password === currentPassInput.value && checkPasswordAndCompare()) {
-            if (dbClicked(e, 'Are you sure?')) {
+            if (dbClicked(e, 'Are you sure?', 'Password changed')) {
                 userData.password = newPassInput.value;
                 localStorage.setItem($loggedUser, JSON.stringify(userData));
                 clearInputs();
@@ -225,6 +233,13 @@ const clearInputs = () => {
     currentPassInput.value = '';
     newPassInput.value = '';
     newPass2Input.value = '';
+}
+
+const deleteUser = e => {
+    if (dbClicked(e, 'Are you sure?', 'Account deleted')) {
+        localStorage.removeItem($loggedUser);
+        logout();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', accountManagement);
