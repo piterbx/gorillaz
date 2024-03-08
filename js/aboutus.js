@@ -4,7 +4,7 @@ const bandMembersRealBox = document.querySelector('.bandMembersReal .band-conten
 
 const loadDataFromJson = () => {
     console.log(window.location.host);
-    fetch(`http://${window.location.host}/members.json`, {
+    fetch(`http://${window.location.host}/files/members.json`, {
         headers: {
             'Content-Type': 'application/json'
         }
