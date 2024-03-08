@@ -60,7 +60,7 @@ const prepareAccountDOMEvents = () => {
     newPass2Input.addEventListener('keyup', checkPasswordAndCompare);
 
     deleteAccount.addEventListener('click', deleteUser);
-    submitPassChange.addEventListener('mouseout', e => restoreStylesForBtn(e, 'Delete'));
+    deleteAccount.addEventListener('mouseout', e => restoreStylesForBtn(e, 'Delete'));
 }
 
 const logout = () => {
