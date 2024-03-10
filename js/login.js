@@ -82,6 +82,11 @@ const loadUsersFromFile = () => {
         resData.users.forEach(user => {
             localStorage.setItem(user.email, JSON.stringify(user));
         })
+
+        // for dev and presentation
+        emailInput.value = resData.users[0].email;
+        passwordInput.value = resData.users[0].password;
+        console.log("Example user: ", emailInput.value, passwordInput.value);
     }).catch(err => console.error(err));
 }
 
