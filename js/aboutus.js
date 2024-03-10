@@ -16,6 +16,7 @@ const loadDataFromJson = () => {
     }).catch(err => {
         const tab = [bandMembersCurrentBox, bandMembersFormerBox, bandMembersRealBox];
         tab.forEach(el => {
+            el.innerText = '';
             const alertInfo = document.createElement('p');
             alertInfo.innerText = 'Failed to load resources. Try again later.';
             alertInfo.style = 'background-color:var(--red);';
@@ -26,6 +27,7 @@ const loadDataFromJson = () => {
 }
 
 const prepareDOMEl = (parentEl, data) => {
+    parentEl.innerText = '';
     data.forEach(el => {
         const divEl = document.createElement('div');
         divEl.classList.add('band-member');
