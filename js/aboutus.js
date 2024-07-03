@@ -1,6 +1,7 @@
 const bandMembersCurrentBox = document.querySelector('.bandMembersCurrent .band-content');
 const bandMembersFormerBox = document.querySelector('.bandMembersFormer .band-content');
 const bandMembersRealBox = document.querySelector('.bandMembersReal .band-content');
+let imgCounter = 11;
 
 const loadDataFromJson = () => {
     console.log(window.location.host);
@@ -34,11 +35,11 @@ const prepareDOMEl = (parentEl, data) => {
 
         divEl.innerHTML = `
         <h4>${el.title}</h4>
-        <img src="${el.img}" alt="${el.title} Img">
+        <a href="./sources.html#i-${imgCounter}" target="_blank"><img src="${el.img}" alt="${el.title} Img"></a>
         <p>${el.occupation}</p>
-        <a target="_blank" href="${el.link}">More</a>
+        <a class="band-link" target="_blank" href="${el.link}">More</a>
         `;
-
+        imgCounter++;
         parentEl.appendChild(divEl);
     })
 }
